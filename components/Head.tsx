@@ -34,8 +34,6 @@ export default ({
   };
   return (
     <Head>
-      <html lang={language} />
-
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
