@@ -1,7 +1,7 @@
 const cacheableResponse = require('cacheable-response');
 const express = require('express');
 const next = require('next');
-const { join } = require('path');
+const { join, resolve } = require('path');
 const { parse } = require('url');
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -9,8 +9,7 @@ const port = dev
   ? parseInt(process.env.PORT, 10) || 8000
   : parseInt(process.env.PORT, 10) || 5000;
 
-const app = next({ dev, dir: './src' });
-console.log(app);
+const app = next({ dev, dir: dev ? './src' : './build' });
 const handle = app.getRequestHandler();
 
 const ssrCache = cacheableResponse({
@@ -24,11 +23,12 @@ const ssrCache = cacheableResponse({
 app.prepare().then(() => {
   const server = express();
 
+  server.use('/static', express.static(resolve(__dirname, './static')));
+
   server.get('/service-worker.js', (req, res) => {
     const parsedUrl = parse(req.url, true);
     const { pathname } = parsedUrl;
-    const filePath = join(__dirname, dev ? '.next' : 'build', pathname);
-    console.log(filePath);
+    const filePath = join(__dirname, '.next', pathname);
     app.serveStatic(req, res, filePath);
   });
 
