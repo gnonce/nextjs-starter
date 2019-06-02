@@ -29,12 +29,6 @@ app.prepare().then(() => {
 
   server.get('/', (req, res) => ssrCache({ req, res, pagePath: '/' }));
 
-  server.get('/blog/:id', (req, res) => {
-    const queryParams = { id: req.params.id };
-    const pagePath = '/blog';
-    return ssrCache({ req, res, pagePath, queryParams });
-  });
-
   server.get('*', (req, res) => handle(req, res));
 
   server.listen(port, err => {

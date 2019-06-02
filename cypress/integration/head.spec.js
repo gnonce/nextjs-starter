@@ -37,6 +37,14 @@ describe('Page head <meta> tags', () => {
     it('has a <link> tag for canonical', () => {
       cy.get('head link[rel="canonical"').should('have.attr', 'href');
     });
+
+    it('has a <link> tag for manifest.json', () => {
+      cy.get('head link[rel="manifest"').should('have.attr', 'href');
+    });
+
+    it('has a <link> tag for favicon', () => {
+      cy.get('head link[rel="icon"').should('have.attr', 'href');
+    });
   });
 
   /**
