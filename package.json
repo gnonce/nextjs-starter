@@ -9,9 +9,10 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
+    "build": "next build src",
     "start": "NODE_ENV=production node server.js",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@svgr/webpack": "^4.2.0",

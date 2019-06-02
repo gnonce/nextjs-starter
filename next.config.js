@@ -6,6 +6,7 @@ const path = require('path');
 const siteConfig = require('./site.config');
 
 const nextConfig = {
+  distDir: process.env.NODE_ENV === 'production' ? `../build` : '.next',
   workboxOpts: {
     runtimeCaching: [
       {
@@ -56,7 +57,7 @@ const nextConfig = {
           start_url: '/',
           icons: [
             {
-              src: path.resolve('static/icon.png'),
+              src: path.resolve('src/static/icon.png'),
               sizes: [32, 64, 96, 128, 192, 256, 384, 512],
               destination: '/static'
             }
