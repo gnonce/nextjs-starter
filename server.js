@@ -12,6 +12,14 @@ const port = dev
 const app = next({ dev, dir: dev ? './src' : './build' });
 const handle = app.getRequestHandler();
 
+const requireHTTPS = (req, res, next) => {
+  // The 'x-forwarded-proto' check is for Heroku
+  if (!req.secure && req.get('x-forwarded-proto') !== 'https' && !dev) {
+    return res.redirect('https://' + req.get('host') + req.url);
+  }
+  next();
+};
+
 const ssrCache = cacheableResponse({
   ttl: 1000 * 60 * 60, // 1hour
   get: async ({ req, res, pagePath, queryParams }) => ({
@@ -23,6 +31,7 @@ const ssrCache = cacheableResponse({
 app.prepare().then(() => {
   const server = express();
 
+  server.use(requireHTTPS);
   server.use('/static', express.static(resolve(__dirname, './static')));
 
   server.get('/service-worker.js', (req, res) => {
