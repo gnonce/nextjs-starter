@@ -28,7 +28,7 @@ export default ({
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: thumbnail || `${siteUrl}/assets/thumbnail.png`,
+    image: thumbnail || `${siteUrl}/static/thumbnail.png`,
     url: `${siteUrl}${pathname}`,
     twitter
   };
@@ -40,6 +40,13 @@ export default ({
       <meta name="theme-color" content={color} />
       <meta name="application-name" content={site} />
       <link rel="canonical" href={seo.url} />
+      <link rel="manifest" href="/_next/static/manifest.json" />
+      <link
+        rel="shortcut icon"
+        href="/static/favicon.ico"
+        type="image/x-icon"
+      />
+      <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
 
       <meta property="og:url" content={seo.url} />
       <meta property="og:title" content={seo.title} />
