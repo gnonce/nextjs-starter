@@ -26,7 +26,6 @@ export default ({
 }: ILayoutProps) => {
   return (
     <Fragment>
-      <GlobalStyles />
       <Head
         title={title}
         description={description}
@@ -36,6 +35,7 @@ export default ({
       />
       <ThemeProvider theme={theme}>
         <Fragment>
+          <GlobalStyles />
           <Header />
           {children}
         </Fragment>
