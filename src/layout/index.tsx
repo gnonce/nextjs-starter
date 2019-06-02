@@ -2,7 +2,6 @@ import { Fragment } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../styles/theme';
-import GlobalStyles from '../styles/globalStyles';
 
 import Head from '../components/Head';
 import Header from '../components/Header';
@@ -35,7 +34,6 @@ export default ({
       />
       <ThemeProvider theme={theme}>
         <Fragment>
-          <GlobalStyles />
           <Header />
           {children}
         </Fragment>

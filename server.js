@@ -4,9 +4,13 @@ const next = require('next');
 const { join } = require('path');
 const { parse } = require('url');
 
-const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dir: './src', dev });
+const port = dev
+  ? parseInt(process.env.PORT, 10) || 8000
+  : parseInt(process.env.PORT, 10) || 5000;
+
+const app = next({ dev, dir: './src' });
+console.log(app);
 const handle = app.getRequestHandler();
 
 const ssrCache = cacheableResponse({
@@ -23,7 +27,8 @@ app.prepare().then(() => {
   server.get('/service-worker.js', (req, res) => {
     const parsedUrl = parse(req.url, true);
     const { pathname } = parsedUrl;
-    const filePath = join(__dirname, '.next', pathname);
+    const filePath = join(__dirname, dev ? '.next' : 'build', pathname);
+    console.log(filePath);
     app.serveStatic(req, res, filePath);
   });
 
