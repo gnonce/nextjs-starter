@@ -23,7 +23,8 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-helmet": "^5.2.1",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "webpack-pwa-manifest": "^4.0.0"
   },
   "devDependencies": {
     "@types/next": "^8.0.5",
@@ -34,7 +35,6 @@
     "babel-plugin-styled-components": "^1.10.0",
     "chance": "^1.0.18",
     "cypress": "^3.3.1",
-    "typescript": "^3.4.5",
-    "webpack-pwa-manifest": "^4.0.0"
+    "typescript": "^3.4.5"
   }
 }
