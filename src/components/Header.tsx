@@ -16,7 +16,7 @@ const Logo = styled.img`
 export default (props: IHeaderProps) => {
   return (
     <Wrapper>
-      <Logo src="/static/nextjs-logo.png" alt="next.js logo" />
+      <Logo src={require('./header/nextjs-logo.png')} alt="next.js logo" />
     </Wrapper>
   );
 };

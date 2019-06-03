@@ -21,7 +21,6 @@ export default ({
     defaultTitle,
     defaultDescription,
     siteUrl,
-    language,
     color,
     twitter
   } = siteConfig;
